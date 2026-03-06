@@ -1,0 +1,34 @@
+---
+title: "homework_03"
+author: "Aiden Soller"
+format: html
+editor: visual
+---
+
+[GitHub repository](https://github.com/aidensoller-glitch/ENVS-193DS_homework-03.git)
+
+```{r}
+library(tidyverse)
+
+library(janitor)
+
+library(gt)
+
+library(car)
+
+library(rstatix)
+
+library(dplyr)
+
+library(here)
+
+salinity<- read_csv("../data/salinity-pickleweed.csv") #read in soil salinity data
+
+sleep<- FILL IN DATA HERE
+```
+
+#Problem 1: Slough Soil Salinity
+
+#a
+
+Two appropriate tests to determine the strength of the relationship are Pearson's product movement correlation and linear regression. Pearson correlation measures both the strength and direction of the linear relationship between soil salinity and pickleweed biomass. Comparatively, linear regression also tests the relationship between salinity and biomass, except it models biomass as the response variable, estimating how much biomass changes with soil salinity.
