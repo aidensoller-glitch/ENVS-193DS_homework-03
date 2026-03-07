@@ -27,15 +27,14 @@ salinity<- read_csv("../data/salinity-pickleweed.csv") #read in soil salinity da
 sleep<- FILL IN DATA HERE
 ```
 
-#Problem 1: Slough Soil Salinity
+# Problem 1: Slough Soil Salinity
 
-#a. An appropriate test
+# a. An appropriate test
 
 Two appropriate tests to determine the strength of the relationship are Pearson's product movement correlation and linear regression. Pearson correlation measures both the strength and direction of the linear relationship between soil salinity and pickleweed biomass. Comparatively, linear regression also tests the relationship between salinity and biomass, except it models biomass as the response variable, estimating how much biomass changes with soil salinity.
 
-#b. Create a visualization
+# b. Create a visualization
 
-C
 ```{r}
 ggplot(data = salinity, 
        aes(x = salinity_mS_cm, y = pickleweed))+
@@ -48,4 +47,29 @@ ggplot(data = salinity,
   theme_minimal()
 ```
 
+# c. Check your assumptions and run your test
+
+## Checking Assumptions
+1. Linear Relationship: Yes, a linear relationship is expected between soil salinity and pickleweed biomass. Factors such as salinity influence plant growth, so a change in soil salinity would correspond to an increase or decrease in biomass.
+
+2. Independent errors: Each pickleweed plant was sampled individually from the slough, so if there is error for one plant it shouldn't influence the error for another.
+3. Homoscedasticity: Checking if error is the same throughout range of predictor values
+```{r}
+model <- lm(pickleweed ~ salinity_mS_cm, data = salinity) # Fit the linear model
+plot(model, which = 1) # Residuals vs fitted plot
+```
+4. Normally Distributed errors
+```{r}
+plot(model, which = 2) # Q-Q plot of residuals
+```
+
+Assumption Description:
+I checked the assumptions of linearity, independence of errors, homoscedasticity, and normally distributed errors. Linearity was checked by assessing the potential of a linear relationship between variables, independent errors was evaluated based on sampling design, homoscedasticity was checked using a residuals vs. fitted plot, and normality using a Q-Q plot of the residuals. The scatterplot showed a approximately linear trend between salinity and pickleweed biomass, the residuals vs fitted plot did not show a strong pattern, and the Q-Q plot showed residuals that generally followed the reference line, suggesting that the assumptions of linear models is satisfied.
+
+##Running Test
+```{r}
+salinity_model <- lm(pickleweed ~ salinity_mS_cm, data = salinity) # Command to run linear regression
+
+summary(salinity_model) # Summary and model displayed
+```
 
