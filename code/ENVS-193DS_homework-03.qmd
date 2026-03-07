@@ -24,7 +24,7 @@ library(here)
 
 salinity<- read_csv("../data/salinity-pickleweed.csv") #read in soil salinity data
 
-sleep<- FILL IN DATA HERE
+sleep_calendar <- read_csv("../data/sleep_schedule.csv") # read in project data as an object called sleep_calendar
 ```
 
 # Problem 1: Slough Soil Salinity
@@ -77,9 +77,19 @@ summary(salinity_model) # Summary and model displayed
 
 To evaluate the strength of the relationship between California pickleweed biomass and soil salinity, I used a linear regression test because soil salinity is a continuous predictor variable and pickleweed biomass is a continuous response variable, and my assumption checks suggested that the assumptions of a linear model were reasonably satisfied.
 
-The test reveals a significant positive relationship between soil salinity and plant biomass, indicating that pickleweed plants at this restoration site tend to grow larger as soil salinity increases (linear regression: β = 2.08, R^2 = 0.286, df = 21, p = 0.0086).
+The test reveals a moderate, positive, and statistically significant relationship between soil salinity and plant biomass, indicating that pickleweed plants at this restoration site tend to grow larger as soil salinity increases (linear regression: β = 2.08, R^2 = 0.286, df = 21, p = 0.0086).
 
 # e. Test implications
+
+The results suggest that pickleweed biomass tends to increase as soil salinity increases, indicating that plants at this site grow larger in areas with higher salinity. While salinity does not explain all of the variation in biomass, the positive and statistically significant relationship suggests that moderately higher salinity conditions may support better pickleweed growth. For planting efforts, this means it may be beneficial to prioritize areas of the slough with higher soil salinity when selecting locations for new pickleweed plantings.
+
+# f. Double check your own work
+```{r}
+cor.test(salinity$salinity_mS_cm, salinity$pickleweed) #running a pearson's correlation test using salinity and pickleweed biomass data.
+```
+Both the simple linear regression and the Pearson’s correlation test would lead to rejecting the null hypothesis because both produce a statistically significant p-value (p = 0.0086). However, the regression model estimates how the response variable (pickleweed biomass) changes with the predictor variable (soil salinity), giving a slope of about 2.08 g increase in biomass per 1 mS/cm increase in salinity, while the correlation test summarizes the strength and direction of the association between the two variables (r ≈ 0.53). Although they describe the relationship in different ways, both tests indicate that higher soil salinity is associated with greater pickleweed biomass at this site.
+
+
 
 
 
