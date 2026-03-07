@@ -166,3 +166,8 @@ The table provided in examined in Part a of homework 1 somewhat clearly represen
 # c. Aesthetic clarity
 
 The figures are fairly clear, with the axes being well labeled with clean and distinct bars for mean, minimum, and maximum values. However, having these three bars grouped directly next to each other per location makes the chart appear cramped and busy, lowering the data:ink ratio. Overall, the important data is emphasized, but by simplifying the presentation by combining summary statistics or using different markers than the bars could improve the aesthetics, decrease visual clutter, and make the figure's trends easier to identify. 
+
+# d. Recommendations
+
+To make the figure better, I would consider adding individual data points with the mean labeled, rather than representing the data as separate bars. Additionally, using error bars instead of separate minimum and maximum bars could simplify the visual and increase the data:ink ratio. As a result, the mean, maximum, and minimum data from the figure would be preserved, while also allowing the viewer to visually identify trends in the data. If using color is feasible, using color coding to make it immediately clear which bar represents mean, minimum, or maximum.
+
