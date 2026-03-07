@@ -29,6 +29,23 @@ sleep<- FILL IN DATA HERE
 
 #Problem 1: Slough Soil Salinity
 
-#a
+#a. An appropriate test
 
 Two appropriate tests to determine the strength of the relationship are Pearson's product movement correlation and linear regression. Pearson correlation measures both the strength and direction of the linear relationship between soil salinity and pickleweed biomass. Comparatively, linear regression also tests the relationship between salinity and biomass, except it models biomass as the response variable, estimating how much biomass changes with soil salinity.
+
+#b. Create a visualization
+
+C
+```{r}
+ggplot(data = salinity, 
+       aes(x = salinity_mS_cm, y = pickleweed))+
+  geom_point(color = "darkgreen", size = 3) +
+  labs(
+    x = "Soil Salinity (mS/cm)",
+    y = "California Pickleweed Biomass (g)",
+    title = "Relationship Between Soil Salinity and Pickleweed Biomass"
+  ) +
+  theme_minimal()
+```
+
+
