@@ -160,3 +160,9 @@ The main statistical test that the authors use to address their main research qu
 #FIGURE OR TABLE HERE
 
 # b.Visual clarity
+
+The table provided in examined in Part a of homework 1 somewhat clearly represents the data underlying tests. The figures logically place well locations on the x-axis and dissolved solids or chloride concentrations on the y-axis, making it easy to compare sites. By showing mean, minimum, and maximum values, the charts summarize the data and give a sense of variability, though the individual data points are not displayed. The use of separate bars for each statistic is clear but slightly busy, which could make interpretation harder at a glance. Overall, the figures represent the underlying statistics effectively, but including individual observations or error bars could improve clarity.
+
+# c. Aesthetic clarity
+
+The figures are fairly clear, with the axes being well labeled with clean and distinct bars for mean, minimum, and maximum values. However, having these three bars grouped directly next to each other per location makes the chart appear cramped and busy, lowering the data:ink ratio. Overall, the important data is emphasized, but by simplifying the presentation by combining summary statistics or using different markers than the bars could improve the aesthetics, decrease visual clutter, and make the figure's trends easier to identify. 
