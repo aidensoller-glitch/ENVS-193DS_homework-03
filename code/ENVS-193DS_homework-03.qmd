@@ -89,8 +89,57 @@ cor.test(salinity$salinity_mS_cm, salinity$pickleweed) #running a pearson's corr
 ```
 Both the simple linear regression and the Pearson’s correlation test would lead to rejecting the null hypothesis because both produce a statistically significant p-value (p = 0.0086). However, the regression model estimates how the response variable (pickleweed biomass) changes with the predictor variable (soil salinity), giving a slope of about 2.08 g increase in biomass per 1 mS/cm increase in salinity, while the correlation test summarizes the strength and direction of the association between the two variables (r ≈ 0.53). Although they describe the relationship in different ways, both tests indicate that higher soil salinity is associated with greater pickleweed biomass at this site.
 
+# Problem 2. Personal data
+Cleaning Data:
+```{r}
+sleep_calendar$duration_hours <-
+  as.numeric(substr(sleep_calendar$duration_hr_mm_ss,1,2)) +
+  as.numeric(substr(sleep_calendar$duration_hr_mm_ss,4,5))/60
 
+  sleep_calendar$half_of_week <- factor(sleep_calendar$half_of_week)
+```
 
+# a. Updating your visualizations
+```{r}
+ggplot(data = sleep_calendar,
+       aes(x = factor(half_of_week,
+                      levels = c(1,2,3),
+                      labels = c("1st Half", "2nd Half", "Weekend")),
+           y = duration_hr_mm_ss,
+           color = factor(half_of_week,
+                          levels = c(1,2,3),
+                          labels = c("1st Half", "2nd Half", "Weekend"))))+
+  geom_jitter(width = 0.15,
+              size = 3,
+              alpha = 0.8) +
+  labs(
+    title = "Sleep Duration Changes Between Parts of the Week",
+    subtitle = paste("Most recent observation:", "Thursday, Mar 5, 2026"),
+    x = "Half of the week (Mon/Tues, Wed/Thurs, Weekend)",
+    y = "Sleep Duration (hours)",
+    color = "Section of the Week"
+  ) +
+  theme_light()
+
+```
+```{r}
+ggplot(sleep_calendar,
+       aes(x = sleepBPM,
+           y = duration_hr_mm_ss)) +
+  geom_point(color = "darkorange", size = 3, alpha = 0.8) +
+  labs(
+    title = "Sleep Duration compared to Average Sleeping Heart Rate",
+    subtitle = "Most recent observation: Mar 5, 2026",
+    x = "Average Sleep Heart Rate (BPM)",
+    y = "Sleep Duration (hours)"
+  ) +
+  theme_minimal(base_size = 14) + # non-default theme
+  theme(panel.grid.major = element_blank(),  # remove gridlines
+        panel.grid.minor = element_blank(),
+        panel.border = element_blank())
+```
+
+# b. Captions
 
 
 
