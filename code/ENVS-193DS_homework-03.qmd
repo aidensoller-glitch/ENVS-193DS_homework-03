@@ -109,9 +109,15 @@ ggplot(data = sleep_calendar,
            color = factor(half_of_week,
                           levels = c(1,2,3),
                           labels = c("1st Half", "2nd Half", "Weekend"))))+
-  geom_jitter(width = 0.15,
+ geom_jitter(width = 0.15,
               size = 3,
-              alpha = 0.8) +
+              alpha = 0.8,
+              shape = 21,       # shape that supports fill + outline
+              stroke = 0.8,     # thickness of black outline
+              fill = "white") + # inner fill color
+  scale_color_manual(values = c("1st Half" = "skyblue",
+                                "2nd Half" = "red",
+                                "Weekend" = "plum")) +
   labs(
     title = "Sleep Duration Changes Between Parts of the Week",
     subtitle = paste("Most recent observation:", "Thursday, Mar 5, 2026"),
@@ -141,5 +147,8 @@ ggplot(sleep_calendar,
 
 # b. Captions
 
+Figure 1: Sleep Duration Changes Between Parts of the Week: This jittered scatterplot illustrates nightly sleep duration (hours) across three sections of the week: 1st Half (Monday–Tuesday), 2nd Half (Wednesday–Thursday), and Weekend (Friday–Sunday). Each point is a white circle with moderate transparency and slight horizontal jitter to show individual observations while minimizing overlap. The points are colored according to blue for 1st Half, green for 2nd Half, and purple for Weekend. The plot uses a light theme for a cleaner look, and the subtitle notes the most recent observation recorded on Thursday, March 5th, 2026. The visualization highlights that sleep duration tends to increase slightly toward the weekend, with variability visible within each section.
+
+Figure 2: Sleep Duration vs Average Sleeping Heart Rate: This scatterplot illustrates nightly sleep duration (hours) in relation to average sleeping heart rate (BPM). Each point is a dark orange circle with moderate transparency, showing individual nights while minimizing overlap. The plot uses a minimal theme and the subtitle notes the most recent observation recorded on Thursday, March 5th, 2026. The visualization reveals variation in sleep duration across different heart rates, with nights of lower heart rate generally corresponding to slightly longer sleep duration.
 
 
