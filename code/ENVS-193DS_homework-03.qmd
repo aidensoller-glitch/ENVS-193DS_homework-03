@@ -36,15 +36,15 @@ Two appropriate tests to determine the strength of the relationship are Pearson'
 # b. Create a visualization
 
 ```{r}
-ggplot(data = salinity, 
-       aes(x = salinity_mS_cm, y = pickleweed))+
-  geom_point(color = "darkgreen", size = 3) +
+ggplot(data = salinity, # use salinity data frame
+       aes(x = salinity_mS_cm, y = pickleweed))+ # set x variable as salinity and y variable as pickleweed
+  geom_point(color = "darkgreen", size = 3) + # add points and adjust color and size
   labs(
-    x = "Soil Salinity (mS/cm)",
-    y = "California Pickleweed Biomass (g)",
-    title = "Relationship Between Soil Salinity and Pickleweed Biomass"
+    x = "Soil Salinity (mS/cm)", # label x axis
+    y = "California Pickleweed Biomass (g)", # label y axis
+    title = "Relationship Between Soil Salinity and Pickleweed Biomass" # add title
   ) +
-  theme_minimal()
+  theme_minimal() # use a minimal theme
 ```
 
 # c. Check your assumptions and run your test
@@ -92,57 +92,59 @@ Both the simple linear regression and the Pearson’s correlation test would lea
 # Problem 2. Personal data
 Cleaning Data:
 ```{r}
-sleep_calendar$duration_hours <-
-  as.numeric(substr(sleep_calendar$duration_hr_mm_ss,1,2)) +
-  as.numeric(substr(sleep_calendar$duration_hr_mm_ss,4,5))/60
+sleep_calendar$duration_hours <- 
+  as.numeric(substr(sleep_calendar$duration_hr_mm_ss,1,2)) +  # Extract hours from first 2 characters and convert to numbers
+  as.numeric(substr(sleep_calendar$duration_hr_mm_ss,4,5))/60 # Extract minutes from the 4th and 5th characters, convert to numbers and divide by 60 to get fraction of hour
 
-  sleep_calendar$half_of_week <- factor(sleep_calendar$half_of_week)
+  sleep_calendar$half_of_week <- factor(sleep_calendar$half_of_week) # Convert half_of_week column to categories (factor)
 ```
 
 # a. Updating your visualizations
 ```{r}
 ggplot(data = sleep_calendar,
-       aes(x = factor(half_of_week,
+       aes(x = factor(half_of_week, # convert half_of_week to categories
                       levels = c(1,2,3),
-                      labels = c("1st Half", "2nd Half", "Weekend")),
+                      labels = c("1st Half", "2nd Half", "Weekend")), # add labels for x-axis
            y = duration_hr_mm_ss,
            color = factor(half_of_week,
                           levels = c(1,2,3),
-                          labels = c("1st Half", "2nd Half", "Weekend"))))+
- geom_jitter(width = 0.15,
-              size = 3,
-              alpha = 0.8,
-              shape = 21,       # shape that supports fill + outline
-              stroke = 0.8,     # thickness of black outline
+                          labels = c("1st Half", "2nd Half", "Weekend"))))+ #color points by half_of_week categories
+ geom_jitter(width = 0.15, # change width
+              size = 3, # change size of points
+              alpha = 0.8, # alter transparency
+              shape = 21, # shape that supports fill + outline
+              stroke = 0.8, # thickness of black outline
               fill = "white") + # inner fill color
   scale_color_manual(values = c("1st Half" = "skyblue",
                                 "2nd Half" = "red",
-                                "Weekend" = "plum")) +
+                                "Weekend" = "plum")) + # set custom colors by category
   labs(
-    title = "Sleep Duration Changes Between Parts of the Week",
-    subtitle = paste("Most recent observation:", "Thursday, Mar 5, 2026"),
-    x = "Half of the week (Mon/Tues, Wed/Thurs, Weekend)",
-    y = "Sleep Duration (hours)",
-    color = "Section of the Week"
+    title = "Sleep Duration Changes Between Parts of the Week", # add title
+    subtitle = paste("Most recent observation:", "Thursday, Mar 5, 2026"), # add subtitle
+    x = "Half of the week (Mon/Tues, Wed/Thurs, Weekend)", # label x axis
+    y = "Sleep Duration (hours)", # label y axis
+    color = "Section of the Week" # label legand
   ) +
-  theme_light()
+  theme_light() # change theme
 
 ```
 ```{r}
 ggplot(sleep_calendar,
-       aes(x = sleepBPM,
-           y = duration_hr_mm_ss)) +
-  geom_point(color = "darkorange", size = 3, alpha = 0.8) +
+       aes(x = sleepBPM, # Set x as average sleep heart rate 
+           y = duration_hr_mm_ss)) + # set y as sleep duration
+  geom_point(color = "darkorange", # add custom color
+             size = 3, # change size
+             alpha = 0.8) + # alter transparency
   labs(
-    title = "Sleep Duration compared to Average Sleeping Heart Rate",
-    subtitle = "Most recent observation: Mar 5, 2026",
-    x = "Average Sleep Heart Rate (BPM)",
-    y = "Sleep Duration (hours)"
+    title = "Sleep Duration compared to Average Sleeping Heart Rate", # add title
+    subtitle = "Most recent observation: Mar 5, 2026", # add subtitle
+    x = "Average Sleep Heart Rate (BPM)", # label x axis
+    y = "Sleep Duration (hours)" # label y axis
   ) +
   theme_minimal(base_size = 14) + # non-default theme
-  theme(panel.grid.major = element_blank(),  # remove gridlines
+  theme(panel.grid.major = element_blank(),  
         panel.grid.minor = element_blank(),
-        panel.border = element_blank())
+        panel.border = element_blank()) # remove grid lines
 ```
 
 # b. Captions
