@@ -151,4 +151,12 @@ Figure 1: Sleep Duration Changes Between Parts of the Week: This jittered scatte
 
 Figure 2: Sleep Duration vs Average Sleeping Heart Rate: This scatterplot illustrates nightly sleep duration (hours) in relation to average sleeping heart rate (BPM). Each point is a dark orange circle with moderate transparency, showing individual nights while minimizing overlap. The plot uses a minimal theme and the subtitle notes the most recent observation recorded on Thursday, March 5th, 2026. The visualization reveals variation in sleep duration across different heart rates, with nights of lower heart rate generally corresponding to slightly longer sleep duration.
 
+# Problem 4. Statistical critique
 
+# a. Revisit and summarize
+
+The main statistical test that the authors use to address their main research question is ANOVA, an extension of the t-test. For this test the response variable is groundwater quality, measured by chemical and microbial parameters. The predictor variable is the well’s location relative to the waste site (upgradient or downgradient).
+
+#FIGURE OR TABLE HERE
+
+# b.Visual clarity
