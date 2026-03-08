@@ -18,7 +18,7 @@ Code: Homework 3 .Rproj .html and .qmd files
 
 Data: salinity-pickleweed.csv , sleep_schedule.csv
 
-Images: Visualization sketch/draft and statistical critique figure
+Images: Visualization sketch/draft and statistical critique figures
 
 # Rendered Output
 
