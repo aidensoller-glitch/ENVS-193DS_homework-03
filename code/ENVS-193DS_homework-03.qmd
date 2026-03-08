@@ -8,6 +8,8 @@ editor: visual
 [GitHubrepository](https://github.com/aidensoller-glitch/ENVS-193DS_homework-03.git)
 
 ```{r}
+#| message: false
+#| warning: false
 library(tidyverse)
 
 library(janitor)
@@ -70,7 +72,7 @@ plot(model, which = 2) # Q-Q plot of residuals
 
 Assumption Description: I checked the assumptions of linearity, independence of errors, homoscedasticity, and normally distributed errors. Linearity was checked by assessing the potential of a linear relationship between variables, independent errors was evaluated based on sampling design, homoscedasticity was checked using a residuals vs. fitted plot, and normality using a Q-Q plot of the residuals. The scatterplot showed a approximately linear trend between salinity and pickleweed biomass, the residuals vs fitted plot did not show a strong pattern, and the Q-Q plot showed residuals that generally followed the reference line, suggesting that the assumptions of linear models is satisfied.
 
-##Running Test
+## Running Test
 
 ```{r}
 salinity_model <- lm(pickleweed ~ salinity_mS_cm, data = salinity) # Command to run linear regression
@@ -94,7 +96,7 @@ The results suggest that pickleweed biomass tends to increase as soil salinity i
 cor.test(salinity$salinity_mS_cm, salinity$pickleweed) #running a pearson's correlation test using salinity and pickleweed biomass data.
 ```
 
-Both the simple linear regression and the Pearson’s correlation test would lead to rejecting the null hypothesis because both produce a statistically significant p-value (p = 0.0086). However, the regression model estimates how the response variable (pickleweed biomass) changes with the predictor variable (soil salinity), giving a slope of about 2.08 g increase in biomass per 1 mS/cm increase in salinity, while the correlation test summarizes the strength and direction of the association between the two variables (r ≈ 0.53). Although they describe the relationship in different ways, both tests indicate that higher soil salinity is associated with greater pickleweed biomass at this site.
+Both the simple linear regression and the Pearson’s correlation test would lead to rejecting the null hypothesis because both produce a statistically significant p-value (p = 0.0086). However, the regression model estimates how the response variable (pickleweed biomass) changes with the predictor variable (soil salinity), giving a slope of about 2.08 g/(mS/cm) (increase in biomass over increase in salinity), while the correlation test summarizes the strength and direction of the association between the two variables (r ≈ 0.53). Although they describe the relationship in different ways, both tests indicate that higher soil salinity is associated with greater pickleweed biomass at this site.
 
 # Problem 2. Personal data
 
@@ -121,13 +123,13 @@ ggplot(data = sleep_calendar,
                           labels = c("1st Half", "2nd Half", "Weekend"))))+ #color points by half_of_week categories
  geom_jitter(width = 0.15, # change width
               size = 3, # change size of points
-              alpha = 0.8, # alter transparency
+              alpha = 1, # alter transparency
               shape = 21, # shape that supports fill + outline
               stroke = 0.8, # thickness of black outline
               fill = "white") + # inner fill color
-  scale_color_manual(values = c("1st Half" = "skyblue",
+  scale_color_manual(values = c("1st Half" = "darkblue",
                                 "2nd Half" = "red",
-                                "Weekend" = "plum")) + # set custom colors by category
+                                "Weekend" = "green")) + # set custom colors by category
   labs(
     title = "Sleep Duration Changes Between Parts of the Week", # add title
     subtitle = paste("Most recent observation:", "Thursday, Mar 5, 2026"), # add subtitle
@@ -160,7 +162,7 @@ ggplot(sleep_calendar,
 
 # b. Captions
 
-Figure 1: Sleep Duration Changes Between Parts of the Week: This jittered scatterplot illustrates nightly sleep duration (hours) across three sections of the week: 1st Half (Monday–Tuesday), 2nd Half (Wednesday–Thursday), and Weekend (Friday–Sunday). Each point is a white circle with moderate transparency and slight horizontal jitter to show individual observations while minimizing overlap. The points are colored according to blue for 1st Half, green for 2nd Half, and purple for Weekend. The plot uses a light theme for a cleaner look, and the subtitle notes the most recent observation recorded on Thursday, March 5th, 2026. The visualization highlights that sleep duration tends to increase slightly toward the weekend, with variability visible within each section.
+Figure 1: Sleep Duration Changes Between Parts of the Week: This jittered scatterplot illustrates nightly sleep duration (hours) across three sections of the week: 1st Half (Monday–Tuesday), 2nd Half (Wednesday–Thursday), and Weekend (Friday–Sunday). Each point is a white circle with moderate transparency and slight horizontal jitter to show individual observations while minimizing overlap. The points are colored according to blue for 1st Half, red for 2nd Half, and green for Weekend. The plot uses a light theme for a cleaner look, and the subtitle notes the most recent observation recorded on Thursday, March 5th, 2026. The visualization highlights that sleep duration tends to increase slightly toward the weekend, with variability visible within each section.
 
 Figure 2: Sleep Duration vs Average Sleeping Heart Rate: This scatterplot illustrates nightly sleep duration (hours) in relation to average sleeping heart rate (BPM). Each point is a dark orange circle with moderate transparency, showing individual nights while minimizing overlap. The plot uses a minimal theme and the subtitle notes the most recent observation recorded on Thursday, March 5th, 2026. The visualization reveals variation in sleep duration across different heart rates, with nights of lower heart rate generally corresponding to slightly longer sleep duration.
 
@@ -168,7 +170,7 @@ Figure 2: Sleep Duration vs Average Sleeping Heart Rate: This scatterplot illust
 
 # a. Describe in words what an affective visualization could look like for your personal data
 
-An affective visualization that could represent my personal data is a drawing of a tree. To represent my data I would divide the tree into two halves, with the left side representing the first half of the week and the right side representing the second half. Based on the duration of my sleep that night, the tree branch would be scaled to match. Additionally, the leaf color of each branch could be changed to match my average sleep heart rate, with greener leaves corresponding to a lower heart rate. As a result, a viewer could assess whether the tree is lopsided or symmetrical3 and identify the color of the tree leaves to see how side of the tree or leaf color impacted sleep duration.
+An affective visualization that could represent my personal data is a drawing of a tree. To represent my data I would divide the tree into two halves, with the left side representing the first half of the week and the right side representing the second half. Based on the duration of my sleep that night, the tree branch would be scaled to match. Additionally, the leaf color of each branch could be changed to match my average sleep heart rate, with greener leaves corresponding to a lower heart rate. As a result, a viewer could assess whether the tree is lopsided or symmetrical and identify the color of the tree leaves to see how side of the tree or leaf color impacted sleep duration.
 
 # b. Create a sketch (on paper) of your idea.
 
@@ -180,15 +182,23 @@ An affective visualization that could represent my personal data is a drawing of
 
 # d. Write an artist statement
 
-##Content: My piece aims to show the health of my sleep data through the medium of a tree, showing how metrics of health data like heart rate and indicator like the what part of the week it is can have a impact on a person's duration of sleep. By connecting my predictor and response variables into a cohesive piece, I show the viewer the connection between my variable. By using a tree, I hope to bring life and health to mind, connecting the viewer to my art and potentially causing them to reflect on their own sleep health.
+## Content:
 
-##Influences: In the creation of the piece I find myself influenced by works such as Lorraine Woodruff-Long's warming strips quilt and the presentation of a family lineage tree. The way Long makes use of color, shape, and gradient to connect with their viewer to draw them into the data appeals to me. I want people to experience the data in the way the warming strips quilt encourages people to, leaning on the format and connection inherent in a family tree.
+My piece aims to show the health of my sleep data through the medium of a tree, showing how metrics of health data like heart rate and indicators like the what part of the week it is can have a impact on a person's duration of sleep. By connecting my predictor and response variables into a cohesive piece, I show the viewer the connection between my variables. By using a tree, I hope to bring life and health to mind, connecting the viewer to my art and potentially causing them to reflect on their own sleep health.
 
-##Form: My work will be made freehand on paper. By making a pencil sketch I can more accurately and consistently measure out the length of my branches and color of my leaves. As a result, differences throughout the tree will be more pronounced and intentional.
+## Influences:
 
-##Process: I created my artwork through references on my phone and online. I measured out a branch that I called "8 hours of sleep" Once a branch is complete, I moved onto the next one, repeating until I covered the entire tree, altering the lengths to match their represented hours accordingly. By altering the placement and angle of branches as I work, I hope to improve the aesthetics and cleanliness of the artwork.
+In the creation of the piece I find myself influenced by works such as Lorraine Woodruff-Long's warming strips quilt and the presentation of a family lineage tree. The way Long makes use of color, shape, and gradient to connect with their viewer to draw them into the data appeals to me. I want people to experience the data in the way the warming strips quilt encourages people to, leaning on the format and connection inherent in a family tree.
 
-e.  Prep your materials to share in class.
+## Form:
+
+My work will be made freehand on paper. By making a pencil sketch I can more accurately and consistently measure out the length of my branches and color of my leaves. As a result, differences throughout the tree will be more pronounced and intentional.
+
+## Process:
+
+I created my artwork through references on my phone and online. I measured out a branch that I called "8 hours of sleep" Once a branch is complete, I moved onto the next one, repeating until I covered the entire tree, altering the lengths to match their represented hours accordingly. By altering the placement and angle of branches as I work, I hope to improve the aesthetics and cleanliness of the artwork.
+
+# e. Prep your materials to share in class.
 
 Slides: [Link](https://docs.google.com/presentation/d/1ou_UzC_hObTi2aGTsJVPf4uRdxBcyaY6IZc5QnrSOyo/edit?usp=sharing)
 
@@ -198,18 +208,18 @@ Slides: [Link](https://docs.google.com/presentation/d/1ou_UzC_hObTi2aGTsJVPf4uRd
 
 The main statistical test that the authors use to address their main research question is ANOVA, an extension of the t-test. For this test the response variable is groundwater quality, measured by chemical and microbial parameters. The predictor variable is the well’s location relative to the waste site (upgradient or downgradient).
 
-![](images/Screenshot%202026-01-30%20at%206.34.55%20PM.png)
+![](images/screenshot.jpg)
 
-![](images/Screenshot%202026-01-30%20at%206.34.45%20PM.png)
+![](images/screenshot2.jpg)
 
 # b.Visual clarity
 
-The table provided in examined in Part a of homework 1 somewhat clearly represents the data underlying tests. The figures logically place well locations on the x-axis and dissolved solids or chloride concentrations on the y-axis, making it easy to compare sites. By showing mean, minimum, and maximum values, the charts summarize the data and give a sense of variability, though the individual data points are not displayed. The use of separate bars for each statistic is clear but slightly busy, which could make interpretation harder at a glance. Overall, the figures represent the underlying statistics effectively, but including individual observations or error bars could improve clarity.
+The table provided and examined in Part a of homework 1 somewhat clearly represents the data underlying tests. The figures logically place well locations on the x-axis and dissolved solids or chloride concentrations on the y-axis, making it easy to compare sites. By showing mean, minimum, and maximum values, the charts summarize the data and give a sense of variability, though the individual data points are not displayed. The use of separate bars for each statistic is clear but slightly busy, which could make interpretation harder at a glance. Overall, the figures represent the underlying statistics effectively, but including individual observations or error bars could improve clarity.
 
 # c. Aesthetic clarity
 
-The figures are fairly clear, with the axes being well labeled with clean and distinct bars for mean, minimum, and maximum values. However, having these three bars grouped directly next to each other per location makes the chart appear cramped and busy, lowering the data:ink ratio. Overall, the important data is emphasized, but by simplifying the presentation by combining summary statistics or using different markers than the bars could improve the aesthetics, decrease visual clutter, and make the figure's trends easier to identify.
+The figures are fairly clear, with the axes being well labeled with clean and distinct bars for mean, minimum, and maximum values. However, having these three bars grouped directly next to each other per location makes the chart appear cramped and busy, lowering the data:ink ratio. Overall, the important data is emphasized, but through simplifying the presentation by combining summary statistics or using different markers than the bars could improve the aesthetics, decrease visual clutter, and make the figure's trends easier to identify.
 
 # d. Recommendations
 
-To make the figure better, I would consider adding individual data points with the mean labeled, rather than representing the data as separate bars. Additionally, using error bars instead of separate minimum and maximum bars could simplify the visual and increase the data:ink ratio. As a result, the mean, maximum, and minimum data from the figure would be preserved, while also allowing the viewer to visually identify trends in the data. If using color is feasible, using color coding to make it immediately clear which bar represents mean, minimum, or maximum.
+To make the figure better, I would consider adding individual data points with the mean labeled, rather than representing the data as separate bars. Additionally, using error bars instead of separate minimum and maximum bars could simplify the visual and increase the data:ink ratio. As a result, the mean, maximum, and minimum data from the figure would be preserved, while also allowing the viewer to visually identify trends in the data. If using color is feasible, using color coding would make it immediately clear which bar represents mean, minimum, or maximum.
