@@ -22,4 +22,4 @@ Images: Visualization sketch/draft and statistical critique figure
 
 # Rendered Output
 
-Path to my rendered html: [code/ENVS-193DS_homework-03.html](code/ENVS-193DS_homework-03.html)
+Path to my rendered html: [code/ENVS-193DS_homework-03.html](https://aidensoller-glitch.github.io/ENVS-193DS_homework-03/code/ENVS-193DS_homework-03.html)
