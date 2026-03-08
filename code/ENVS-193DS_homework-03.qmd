@@ -168,23 +168,25 @@ Figure 2: Sleep Duration vs Average Sleeping Heart Rate: This scatterplot illust
 
 # a. Describe in words what an affective visualization could look like for your personal data
 
-An affective visualization that could represent my personal data is a drawing of a tree. To represent my data I would divide the tree into two halves, with the left side representing the first half of the week and the right side representing the second half. Based on the duration of my sleep that night, the tree branch would be scaled to match. Additionally, the leaf color of each branch could be changed to match my average sleep heart rate, with greener leaves corresponding to a lower heart rate. As a result, a viewer could assess whether the tree is lopsided or symetrical and identify the color of the tree leaves to see how side of the tree or leaf color impacted sleep duration.
+An affective visualization that could represent my personal data is a drawing of a tree. To represent my data I would divide the tree into two halves, with the left side representing the first half of the week and the right side representing the second half. Based on the duration of my sleep that night, the tree branch would be scaled to match. Additionally, the leaf color of each branch could be changed to match my average sleep heart rate, with greener leaves corresponding to a lower heart rate. As a result, a viewer could assess whether the tree is lopsided or symmetrical3 and identify the color of the tree leaves to see how side of the tree or leaf color impacted sleep duration.
 
 # b. Create a sketch (on paper) of your idea.
 
 ![](images/IMG_1933-01.JPG)
 
-# c
+# c. Make a draft of your visualization
+
+![](images/IMG_1934.jpg)
 
 # d. Write an artist statement
 
 ##Content: My piece aims to show the health of my sleep data through the medium of a tree, showing how metrics of health data like heart rate and indicator like the what part of the week it is can have a impact on a person's duration of sleep. By connecting my predictor and response variables into a cohesive piece, I show the viewer the connection between my variable. By using a tree, I hope to bring life and health to mind, connecting the viewer to my art and potentially causing them to reflect on their own sleep health.
 
-##Influences: In the creation of the piece I find myself influenced by works such as Lorraine Woodruff-Long's warming strips quilt and the presentation of a family lineage tree. The way Long makes use of color, shape, and gradient to connect with their viewer to draw them into the data appeals to me. I want people to experience the data in the way the warming strips quilt encourages people to, leaning on the format and connection inharent in a family tree.
+##Influences: In the creation of the piece I find myself influenced by works such as Lorraine Woodruff-Long's warming strips quilt and the presentation of a family lineage tree. The way Long makes use of color, shape, and gradient to connect with their viewer to draw them into the data appeals to me. I want people to experience the data in the way the warming strips quilt encourages people to, leaning on the format and connection inherent in a family tree.
 
-##Form: My work will be made in a digital art program. By making use of a computer I can more accurately and consistently measure out the length of my branches and color of my leaves. As a result, differences throughout the tree will be more pronounced and intentional.
+##Form: My work will be made freehand on paper. By making a pencil sketch I can more accurately and consistently measure out the length of my branches and color of my leaves. As a result, differences throughout the tree will be more pronounced and intentional.
 
-##Process: I created my artwork through trial and error, making use of the back button to make sure that I was happy with each branch. Once a branch is complete, I moved onto the next one, repeating until I (eventually) cover the entire tree. By altering the placement and angle of branches as I work, I hope to improve the aesthetics and cleanliness of the artwork.
+##Process: I created my artwork through references on my phone and online. I measured out a branch that I called "8 hours of sleep" Once a branch is complete, I moved onto the next one, repeating until I covered the entire tree, altering the lengths to match their represented hours accordingly. By altering the placement and angle of branches as I work, I hope to improve the aesthetics and cleanliness of the artwork.
 
 e.  Prep your materials to share in class.
 
