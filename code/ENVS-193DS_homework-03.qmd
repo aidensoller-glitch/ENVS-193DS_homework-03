@@ -5,7 +5,7 @@ format: html
 editor: visual
 ---
 
-[GitHub ](https://github.com/aidensoller-glitch/ENVS-193DS_homework-03.git)[repository](https://github.com/aidensoller-glitch/ENVS-193DS_homework-03.git)
+[GitHubrepository](https://github.com/aidensoller-glitch/ENVS-193DS_homework-03.git)
 
 ```{r}
 library(tidyverse)
@@ -50,23 +50,28 @@ ggplot(data = salinity, # use salinity data frame
 # c. Check your assumptions and run your test
 
 ## Checking Assumptions
-1. Linear Relationship: Yes, a linear relationship is expected between soil salinity and pickleweed biomass. Factors such as salinity influence plant growth, so a change in soil salinity would correspond to an increase or decrease in biomass.
 
-2. Independent errors: Each pickleweed plant was sampled individually from the slough, so if there is error for one plant it shouldn't influence the error for another.
-3. Homoscedasticity: Checking if error is the same throughout range of predictor values
+1.  Linear Relationship: Yes, a linear relationship is expected between soil salinity and pickleweed biomass. Factors such as salinity influence plant growth, so a change in soil salinity would correspond to an increase or decrease in biomass.
+
+2.  Independent errors: Each pickleweed plant was sampled individually from the slough, so if there is error for one plant it shouldn't influence the error for another.
+
+3.  Homoscedasticity: Checking if error is the same throughout range of predictor values
+
 ```{r}
 model <- lm(pickleweed ~ salinity_mS_cm, data = salinity) # Fit the linear model
 plot(model, which = 1) # Residuals vs fitted plot
 ```
-4. Normally Distributed errors
+
+4.  Normally Distributed errors
+
 ```{r}
 plot(model, which = 2) # Q-Q plot of residuals
 ```
 
-Assumption Description:
-I checked the assumptions of linearity, independence of errors, homoscedasticity, and normally distributed errors. Linearity was checked by assessing the potential of a linear relationship between variables, independent errors was evaluated based on sampling design, homoscedasticity was checked using a residuals vs. fitted plot, and normality using a Q-Q plot of the residuals. The scatterplot showed a approximately linear trend between salinity and pickleweed biomass, the residuals vs fitted plot did not show a strong pattern, and the Q-Q plot showed residuals that generally followed the reference line, suggesting that the assumptions of linear models is satisfied.
+Assumption Description: I checked the assumptions of linearity, independence of errors, homoscedasticity, and normally distributed errors. Linearity was checked by assessing the potential of a linear relationship between variables, independent errors was evaluated based on sampling design, homoscedasticity was checked using a residuals vs. fitted plot, and normality using a Q-Q plot of the residuals. The scatterplot showed a approximately linear trend between salinity and pickleweed biomass, the residuals vs fitted plot did not show a strong pattern, and the Q-Q plot showed residuals that generally followed the reference line, suggesting that the assumptions of linear models is satisfied.
 
 ##Running Test
+
 ```{r}
 salinity_model <- lm(pickleweed ~ salinity_mS_cm, data = salinity) # Command to run linear regression
 
@@ -77,20 +82,24 @@ summary(salinity_model) # Summary and model displayed
 
 To evaluate the strength of the relationship between California pickleweed biomass and soil salinity, I used a linear regression test because soil salinity is a continuous predictor variable and pickleweed biomass is a continuous response variable, and my assumption checks suggested that the assumptions of a linear model were reasonably satisfied.
 
-The test reveals a moderate, positive, and statistically significant relationship between soil salinity and plant biomass, indicating that pickleweed plants at this restoration site tend to grow larger as soil salinity increases (linear regression: β = 2.08, R^2 = 0.286, df = 21, p = 0.0086).
+The test reveals a moderate, positive, and statistically significant relationship between soil salinity and plant biomass, indicating that pickleweed plants at this restoration site tend to grow larger as soil salinity increases (linear regression: β = 2.08, R\^2 = 0.286, df = 21, p = 0.0086).
 
 # e. Test implications
 
 The results suggest that pickleweed biomass tends to increase as soil salinity increases, indicating that plants at this site grow larger in areas with higher salinity. While salinity does not explain all of the variation in biomass, the positive and statistically significant relationship suggests that moderately higher salinity conditions may support better pickleweed growth. For planting efforts, this means it may be beneficial to prioritize areas of the slough with higher soil salinity when selecting locations for new pickleweed plantings.
 
 # f. Double check your own work
+
 ```{r}
 cor.test(salinity$salinity_mS_cm, salinity$pickleweed) #running a pearson's correlation test using salinity and pickleweed biomass data.
 ```
+
 Both the simple linear regression and the Pearson’s correlation test would lead to rejecting the null hypothesis because both produce a statistically significant p-value (p = 0.0086). However, the regression model estimates how the response variable (pickleweed biomass) changes with the predictor variable (soil salinity), giving a slope of about 2.08 g increase in biomass per 1 mS/cm increase in salinity, while the correlation test summarizes the strength and direction of the association between the two variables (r ≈ 0.53). Although they describe the relationship in different ways, both tests indicate that higher soil salinity is associated with greater pickleweed biomass at this site.
 
 # Problem 2. Personal data
+
 Cleaning Data:
+
 ```{r}
 sleep_calendar$duration_hours <- 
   as.numeric(substr(sleep_calendar$duration_hr_mm_ss,1,2)) +  # Extract hours from first 2 characters and convert to numbers
@@ -100,6 +109,7 @@ sleep_calendar$duration_hours <-
 ```
 
 # a. Updating your visualizations
+
 ```{r}
 ggplot(data = sleep_calendar,
        aes(x = factor(half_of_week, # convert half_of_week to categories
@@ -128,6 +138,7 @@ ggplot(data = sleep_calendar,
   theme_light() # change theme
 
 ```
+
 ```{r}
 ggplot(sleep_calendar,
        aes(x = sleepBPM, # Set x as average sleep heart rate 
@@ -153,13 +164,41 @@ Figure 1: Sleep Duration Changes Between Parts of the Week: This jittered scatte
 
 Figure 2: Sleep Duration vs Average Sleeping Heart Rate: This scatterplot illustrates nightly sleep duration (hours) in relation to average sleeping heart rate (BPM). Each point is a dark orange circle with moderate transparency, showing individual nights while minimizing overlap. The plot uses a minimal theme and the subtitle notes the most recent observation recorded on Thursday, March 5th, 2026. The visualization reveals variation in sleep duration across different heart rates, with nights of lower heart rate generally corresponding to slightly longer sleep duration.
 
+# Problem 3. Affective visualization
+
+# a. Describe in words what an affective visualization could look like for your personal data
+
+An affective visualization that could represent my personal data is a drawing of a tree. To represent my data I would divide the tree into two halves, with the left side representing the first half of the week and the right side representing the second half. Based on the duration of my sleep that night, the tree branch would be scaled to match. Additionally, the leaf color of each branch could be changed to match my average sleep heart rate, with greener leaves corresponding to a lower heart rate. As a result, a viewer could assess whether the tree is lopsided or symetrical and identify the color of the tree leaves to see how side of the tree or leaf color impacted sleep duration.
+
+# b. Create a sketch (on paper) of your idea.
+
+![](images/IMG_1933-01.JPG)
+
+# c
+
+# d. Write an artist statement
+
+##Content: My piece aims to show the health of my sleep data through the medium of a tree, showing how metrics of health data like heart rate and indicator like the what part of the week it is can have a impact on a person's duration of sleep. By connecting my predictor and response variables into a cohesive piece, I show the viewer the connection between my variable. By using a tree, I hope to bring life and health to mind, connecting the viewer to my art and potentially causing them to reflect on their own sleep health.
+
+##Influences: In the creation of the piece I find myself influenced by works such as Lorraine Woodruff-Long's warming strips quilt and the presentation of a family lineage tree. The way Long makes use of color, shape, and gradient to connect with their viewer to draw them into the data appeals to me. I want people to experience the data in the way the warming strips quilt encourages people to, leaning on the format and connection inharent in a family tree.
+
+##Form: My work will be made in a digital art program. By making use of a computer I can more accurately and consistently measure out the length of my branches and color of my leaves. As a result, differences throughout the tree will be more pronounced and intentional.
+
+##Process: I created my artwork through trial and error, making use of the back button to make sure that I was happy with each branch. Once a branch is complete, I moved onto the next one, repeating until I (eventually) cover the entire tree. By altering the placement and angle of branches as I work, I hope to improve the aesthetics and cleanliness of the artwork.
+
+e.  Prep your materials to share in class.
+
+Slides: [Link](https://docs.google.com/presentation/d/1ou_UzC_hObTi2aGTsJVPf4uRdxBcyaY6IZc5QnrSOyo/edit?usp=sharing)
+
 # Problem 4. Statistical critique
 
 # a. Revisit and summarize
 
 The main statistical test that the authors use to address their main research question is ANOVA, an extension of the t-test. For this test the response variable is groundwater quality, measured by chemical and microbial parameters. The predictor variable is the well’s location relative to the waste site (upgradient or downgradient).
 
-#FIGURE OR TABLE HERE
+![](images/Screenshot%202026-01-30%20at%206.34.55%20PM.png)
+
+![](images/Screenshot%202026-01-30%20at%206.34.45%20PM.png)
 
 # b.Visual clarity
 
@@ -167,9 +206,8 @@ The table provided in examined in Part a of homework 1 somewhat clearly represen
 
 # c. Aesthetic clarity
 
-The figures are fairly clear, with the axes being well labeled with clean and distinct bars for mean, minimum, and maximum values. However, having these three bars grouped directly next to each other per location makes the chart appear cramped and busy, lowering the data:ink ratio. Overall, the important data is emphasized, but by simplifying the presentation by combining summary statistics or using different markers than the bars could improve the aesthetics, decrease visual clutter, and make the figure's trends easier to identify. 
+The figures are fairly clear, with the axes being well labeled with clean and distinct bars for mean, minimum, and maximum values. However, having these three bars grouped directly next to each other per location makes the chart appear cramped and busy, lowering the data:ink ratio. Overall, the important data is emphasized, but by simplifying the presentation by combining summary statistics or using different markers than the bars could improve the aesthetics, decrease visual clutter, and make the figure's trends easier to identify.
 
 # d. Recommendations
 
 To make the figure better, I would consider adding individual data points with the mean labeled, rather than representing the data as separate bars. Additionally, using error bars instead of separate minimum and maximum bars could simplify the visual and increase the data:ink ratio. As a result, the mean, maximum, and minimum data from the figure would be preserved, while also allowing the viewer to visually identify trends in the data. If using color is feasible, using color coding to make it immediately clear which bar represents mean, minimum, or maximum.
-
