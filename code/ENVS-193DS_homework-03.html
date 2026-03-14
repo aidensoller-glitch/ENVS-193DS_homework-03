@@ -169,7 +169,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="a.-an-appropriate-test" class="level1">
 <h1>a. An appropriate test</h1>
-<p>Two appropriate tests to determine the strength of the relationship are Pearson’s product movement correlation and linear regression. Pearson correlation measures both the strength and direction of the linear relationship between soil salinity and pickleweed biomass. Comparatively, linear regression also tests the relationship between salinity and biomass, except it models biomass as the response variable, estimating how much biomass changes with soil salinity.</p>
+<p>Two appropriate tests to determine the strength of the relationship are Pearson’s product movement correlation and Spearman’s rank correlation. Pearson correlation measures both the strength and direction of the linear relationship between soil salinity and pickleweed biomass, while avoiding the assumption that one variable causes the other. Comparatively Spearman’s rank correlation measures still measures the strength and direction of a <strong>monotonic relationship</strong> by using the 2 <strong>ranked values</strong> of salinity and biomass rather than the raw measurements, making it a more appropriate test if the data are not normally distributed.</p>
 </section>
 <section id="b.-create-a-visualization" class="level1">
 <h1>b. Create a visualization</h1>
@@ -197,13 +197,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="checking-assumptions" class="level2">
 <h2 class="anchored" data-anchor-id="checking-assumptions">Checking Assumptions</h2>
 <ol type="1">
-<li><p>Linear Relationship: Yes, a linear relationship is expected between soil salinity and pickleweed biomass. Factors such as salinity influence plant growth, so a change in soil salinity would correspond to an increase or decrease in biomass.</p></li>
-<li><p>Independent errors: Each pickleweed plant was sampled individually from the slough, so if there is error for one plant it shouldn’t influence the error for another.</p></li>
-<li><p>Homoscedasticity: Checking if error is the same throughout range of predictor values</p></li>
+<li><p>Linear Relationship: Yes, a linear relationship is expected between soil salinity and pickleweed biomass as determined in plot 1b. Factors such as salinity influence plant growth, so a change in soil salinity would correspond to an increase or decrease in biomass.</p></li>
+<li><p>Variables are Continuous and 3. Normally Distributed:</p></li>
 </ol>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">lm</span>(pickleweed <span class="sc">~</span> salinity_mS_cm, <span class="at">data =</span> salinity) <span class="co"># Fit the linear model</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model, <span class="at">which =</span> <span class="dv">1</span>) <span class="co"># Residuals vs fitted plot</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> salinity, <span class="co"># use salinity data frame</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">sample =</span> salinity_mS_cm)) <span class="sc">+</span> <span class="co"># use salinity_mS_cm only</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq</span>(<span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span> <span class="co"># add points and adjust color and size</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq_line</span>(<span class="at">color =</span> <span class="st">"orange"</span>) <span class="sc">+</span> <span class="co"># create a reference line</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Theoretical"</span>, <span class="co"># add x axis label</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Sample"</span>, <span class="co"># add y axis label</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"QQ of Soil Salinity"</span>) <span class="sc">+</span> <span class="co">#adds graph title</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="co">#changes theme </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -212,11 +217,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<ol start="4" type="1">
-<li>Normally Distributed errors</li>
-</ol>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(model, <span class="at">which =</span> <span class="dv">2</span>) <span class="co"># Q-Q plot of residuals</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> salinity, <span class="co"># use salinity data frame</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">aes</span>(<span class="at">sample =</span> pickleweed)) <span class="sc">+</span> <span class="co"># use salinity_mS_cm only</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq</span>(<span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span> <span class="co"># add points and adjust color and size</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq_line</span>(<span class="at">color =</span> <span class="st">"orange"</span>) <span class="sc">+</span> <span class="co"># create a reference line</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Theoretical"</span>, <span class="co"># add x axis label</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Sample"</span>, <span class="co"># add y axis label</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"QQ of Pickleweed Biomass"</span>) <span class="sc">+</span> <span class="co">#adds graph title</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="co">#changes theme </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -225,50 +234,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>Assumption Description: I checked the assumptions of linearity, independence of errors, homoscedasticity, and normally distributed errors. Linearity was checked by assessing the potential of a linear relationship between variables, independent errors was evaluated based on sampling design, homoscedasticity was checked using a residuals vs.&nbsp;fitted plot, and normality using a Q-Q plot of the residuals. The scatterplot showed a approximately linear trend between salinity and pickleweed biomass, the residuals vs fitted plot did not show a strong pattern, and the Q-Q plot showed residuals that generally followed the reference line, suggesting that the assumptions of linear models is satisfied.</p>
+<ol start="4" type="1">
+<li>Independent Observations: Each pickleweed plant was sampled individually from the slough, so the measurement from one plant does not influence the measurement from another.</li>
+</ol>
+<p>Assumption Description: In order to run a Pearson’s correlation, I checked four assumptions: that the relationship between soil salinity and pickleweed biomass is linear, that both variables are continuous and normally distributed, and that observations are independent. I assessed linearity by visually inspecting the scatterplot of pickleweed biomass vs.&nbsp;soil salinity from part 1b, checked normality using Q–Q plots for both variables, confirmed continuity because both biomass and salinity can take on a range of numerical values, and verified independence because each pickleweed plant was sampled individually from the slough. The scatterplot showed an approximately linear positive relationship, the Q–Q plots had points roughly along the reference line, and the study design supports independence, so the assumptions appear to be reasonably satisfied.</p>
 </section>
 <section id="running-test" class="level2">
 <h2 class="anchored" data-anchor-id="running-test">Running Test</h2>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>salinity_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(pickleweed <span class="sc">~</span> salinity_mS_cm, <span class="at">data =</span> salinity) <span class="co"># Command to run linear regression</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(salinity_model) <span class="co"># Summary and model displayed</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = pickleweed ~ salinity_mS_cm, data = salinity)
-
-Residuals:
-    Min      1Q  Median      3Q     Max 
--12.499  -5.819  -1.726   4.794  21.765 
-
-Coefficients:
-               Estimate Std. Error t value Pr(&gt;|t|)   
-(Intercept)     13.0895     4.0350   3.244  0.00389 **
-salinity_mS_cm   2.0832     0.7188   2.898  0.00860 **
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 9.144 on 21 degrees of freedom
-Multiple R-squared:  0.2857,    Adjusted R-squared:  0.2517 
-F-statistic: 8.398 on 1 and 21 DF,  p-value: 0.008605</code></pre>
-</div>
-</div>
-</section>
-</section>
-<section id="d.-results-communication" class="level1">
-<h1>d.&nbsp;Results communication</h1>
-<p>To evaluate the strength of the relationship between California pickleweed biomass and soil salinity, I used a linear regression test because soil salinity is a continuous predictor variable and pickleweed biomass is a continuous response variable, and my assumption checks suggested that the assumptions of a linear model were reasonably satisfied.</p>
-<p>The test reveals a moderate, positive, and statistically significant relationship between soil salinity and plant biomass, indicating that pickleweed plants at this restoration site tend to grow larger as soil salinity increases (linear regression: β = 2.08, R^2 = 0.286, df = 21, p = 0.0086).</p>
-</section>
-<section id="e.-test-implications" class="level1">
-<h1>e. Test implications</h1>
-<p>The results suggest that pickleweed biomass tends to increase as soil salinity increases, indicating that plants at this site grow larger in areas with higher salinity. While salinity does not explain all of the variation in biomass, the positive and statistically significant relationship suggests that moderately higher salinity conditions may support better pickleweed growth. For planting efforts, this means it may be beneficial to prioritize areas of the slough with higher soil salinity when selecting locations for new pickleweed plantings.</p>
-</section>
-<section id="f.-double-check-your-own-work" class="level1">
-<h1>f.&nbsp;Double check your own work</h1>
-<div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(salinity<span class="sc">$</span>salinity_mS_cm, salinity<span class="sc">$</span>pickleweed) <span class="co">#running a pearson's correlation test using salinity and pickleweed biomass data.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(salinity<span class="sc">$</span>salinity_mS_cm, salinity<span class="sc">$</span>pickleweed,</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">method =</span> <span class="st">"pearson"</span>) <span class="co"># running a pearson's correlation test using salinity and pickleweed biomass data.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's product-moment correlation
@@ -283,7 +258,35 @@ sample estimates:
 0.5344778 </code></pre>
 </div>
 </div>
-<p>Both the simple linear regression and the Pearson’s correlation test would lead to rejecting the null hypothesis because both produce a statistically significant p-value (p = 0.0086). However, the regression model estimates how the response variable (pickleweed biomass) changes with the predictor variable (soil salinity), giving a slope of about 2.08 g/(mS/cm) (increase in biomass over increase in salinity), while the correlation test summarizes the strength and direction of the association between the two variables (r ≈ 0.53). Although they describe the relationship in different ways, both tests indicate that higher soil salinity is associated with greater pickleweed biomass at this site.</p>
+</section>
+</section>
+<section id="d.-results-communication" class="level1">
+<h1>d.&nbsp;Results communication</h1>
+<p>To evaluate the relationship between California pickleweed biomass and soil salinity, I used a Pearson’s product–moment correlation because both soil salinity and pickleweed biomass are continuous variables, and my assumption checks suggested that the assumptions required for a Pearson correlation were reasonably satisfied.</p>
+<p>The test reveals a moderate, positive, and statistically significant relationship between soil salinity and plant biomass, indicating that pickleweed plants at this restoration site tend to grow larger as soil salinity increases (Pearson’s r = 0.53, t(21) = 2.90, p = 0.009, α = 0.05).</p>
+</section>
+<section id="e.-test-implications" class="level1">
+<h1>e. Test implications</h1>
+<p>The results suggest that pickleweed biomass tends to increase as soil salinity increases, indicating that plants at this site grow larger in areas with higher salinity. While salinity does not explain all of the variation in biomass, the positive and statistically significant relationship suggests that moderately higher salinity conditions may support better pickleweed growth. For planting efforts, this means it may be beneficial to prioritize areas of the slough with higher soil salinity when selecting locations for new pickleweed plantings.</p>
+</section>
+<section id="f.-double-check-your-own-work" class="level1">
+<h1>f.&nbsp;Double check your own work</h1>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(salinity<span class="sc">$</span>salinity_mS_cm, salinity<span class="sc">$</span>pickleweed, </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">method =</span> <span class="st">"spearman"</span>) <span class="co"># Running a spearman's correlation test using salinity and pickleweed biomass data.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Spearman's rank correlation rho
+
+data:  salinity$salinity_mS_cm and salinity$pickleweed
+S = 824, p-value = 0.003426
+alternative hypothesis: true rho is not equal to 0
+sample estimates:
+      rho 
+0.5928854 </code></pre>
+</div>
+</div>
+<p>Both the Pearson’s correlation and the Spearman’s rank correlation would lead to rejecting the null hypothesis because both produce statistically significant p-values (Pearson: p = 0.0086; Spearman: p = 0.0034). The Pearson test summarizes the strength and direction of the linear relationship between soil salinity and pickleweed biomass (r ≈ 0.53), while the Spearman test assesses the strength and direction of the monotonic relationship (ρ ≈ 0.59), which is based on the ranked values rather than the raw measurements. Although the two tests approach the relationship differently, they both indicate that higher soil salinity is associated with greater pickleweed biomass at this site.</p>
 </section>
 <section id="problem-2.-personal-data" class="level1">
 <h1>Problem 2. Personal data</h1>
