@@ -37,7 +37,7 @@ sleep_calendar <- read_csv("../data/sleep_schedule.csv") # read in project data 
 
 # a. An appropriate test
 
-Two appropriate tests to determine the strength of the relationship are Pearson's product movement correlation and Spearman's rank correlation. Pearson correlation measures both the strength and direction of the linear relationship between soil salinity and pickleweed biomass, while avoiding the assumption that one variable causes the other. Comparatively Spearman's rank correlation measures still measures the strength and direction of a **monotonic relationship** by using the 2 **ranked values** of salinity and biomass rather than the raw measurements, making it a more appropriate test if the data are not normally distributed.
+Two appropriate tests to determine the strength of the relationship are Pearson's product movement correlation and Spearman's rank correlation. Pearson correlation is a parametric test that measures both the strength and direction of the linear relationship between soil salinity and pickleweed biomass, assuming continous, normally distributed variables with independent observations. Comparatively Spearman's rank correlation measures the strength and direction of a monotonic relationship without assuming normality or linearity by using the 2 ranked values of salinity and plant biomass rather than the raw measurements.
 
 # b. Create a visualization
 
@@ -79,8 +79,8 @@ ggplot(data = salinity, # use salinity data frame
   geom_qq_line(color = "orange") + # create a reference line
   labs(x = "Theoretical", # add x axis label
        y = "Sample", # add y axis label
-    title = "QQ of Pickleweed Biomass") + #adds graph title
-  theme_minimal() #changes theme 
+    title = "QQ of Pickleweed Biomass") + # adds graph title
+  theme_minimal() # changes theme 
 ```
 
 4.  Independent Observations: Each pickleweed plant was sampled individually from the slough, so the measurement from one plant does not influence the measurement from another.
@@ -96,7 +96,7 @@ cor.test(salinity$salinity_mS_cm, salinity$pickleweed,
 
 # d. Results communication
 
-To evaluate the relationship between California pickleweed biomass and soil salinity, I used a Pearson’s product–moment correlation because both soil salinity and pickleweed biomass are continuous variables, and my assumption checks suggested that the assumptions required for a Pearson correlation were reasonably satisfied.
+To evaluate the relationship between California pickleweed biomass (g) and soil salinity (mS/cm), I used a Pearson’s product–moment correlation because both soil salinity and pickleweed biomass are continuous variables, and my assumption checks suggested that the assumptions required for a Pearson correlation were reasonably satisfied.
 
 The test reveals a moderate, positive, and statistically significant relationship between soil salinity and plant biomass, indicating that pickleweed plants at this restoration site tend to grow larger as soil salinity increases (Pearson’s r = 0.53, t(21) = 2.90, p = 0.009, α = 0.05).
 
@@ -111,7 +111,7 @@ cor.test(salinity$salinity_mS_cm, salinity$pickleweed,
          method = "spearman") # Running a spearman's correlation test using salinity and pickleweed biomass data.
 ```
 
-Both the Pearson’s correlation and the Spearman’s rank correlation would lead to rejecting the null hypothesis because both produce statistically significant p-values (Pearson: p = 0.0086; Spearman: p = 0.0034). The Pearson test summarizes the strength and direction of the linear relationship between soil salinity and pickleweed biomass (r ≈ 0.53), while the Spearman test assesses the strength and direction of the monotonic relationship (ρ ≈ 0.59), which is based on the ranked values rather than the raw measurements. Although the two tests approach the relationship differently, they both indicate that higher soil salinity is associated with greater pickleweed biomass at this site.
+Both the Pearson’s correlation and the Spearman’s rank correlation would lead to rejecting the null hypothesis because both produce statistically significant p-values (Pearson: p = 0.0086; Spearman: p = 0.0034). The Pearson test summarizes the strength and direction of the linear relationship between soil salinity and pickleweed biomass (r = 0.53), while the Spearman test assesses the strength and direction of the monotonic relationship (ρ = 0.59), which is based on the ranked values rather than the raw measurements. Although the two tests approach the relationship differently, they both indicate that higher soil salinity is associated with greater pickleweed biomass at this site.
 
 # Problem 2. Personal data
 
