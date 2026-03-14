@@ -169,7 +169,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="a.-an-appropriate-test" class="level1">
 <h1>a. An appropriate test</h1>
-<p>Two appropriate tests to determine the strength of the relationship are Pearson’s product movement correlation and Spearman’s rank correlation. Pearson correlation measures both the strength and direction of the linear relationship between soil salinity and pickleweed biomass, while avoiding the assumption that one variable causes the other. Comparatively Spearman’s rank correlation measures still measures the strength and direction of a <strong>monotonic relationship</strong> by using the 2 <strong>ranked values</strong> of salinity and biomass rather than the raw measurements, making it a more appropriate test if the data are not normally distributed.</p>
+<p>Two appropriate tests to determine the strength of the relationship are Pearson’s product movement correlation and Spearman’s rank correlation. Pearson correlation is a parametric test that measures both the strength and direction of the linear relationship between soil salinity and pickleweed biomass, assuming continous, normally distributed variables with independent observations. Comparatively Spearman’s rank correlation measures the strength and direction of a monotonic relationship without assuming normality or linearity by using the 2 ranked values of salinity and plant biomass rather than the raw measurements.</p>
 </section>
 <section id="b.-create-a-visualization" class="level1">
 <h1>b. Create a visualization</h1>
@@ -224,8 +224,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_qq_line</span>(<span class="at">color =</span> <span class="st">"orange"</span>) <span class="sc">+</span> <span class="co"># create a reference line</span></span>
 <span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Theoretical"</span>, <span class="co"># add x axis label</span></span>
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Sample"</span>, <span class="co"># add y axis label</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"QQ of Pickleweed Biomass"</span>) <span class="sc">+</span> <span class="co">#adds graph title</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="co">#changes theme </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"QQ of Pickleweed Biomass"</span>) <span class="sc">+</span> <span class="co"># adds graph title</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="co"># changes theme </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -262,7 +262,7 @@ sample estimates:
 </section>
 <section id="d.-results-communication" class="level1">
 <h1>d.&nbsp;Results communication</h1>
-<p>To evaluate the relationship between California pickleweed biomass and soil salinity, I used a Pearson’s product–moment correlation because both soil salinity and pickleweed biomass are continuous variables, and my assumption checks suggested that the assumptions required for a Pearson correlation were reasonably satisfied.</p>
+<p>To evaluate the relationship between California pickleweed biomass (g) and soil salinity (mS/cm), I used a Pearson’s product–moment correlation because both soil salinity and pickleweed biomass are continuous variables, and my assumption checks suggested that the assumptions required for a Pearson correlation were reasonably satisfied.</p>
 <p>The test reveals a moderate, positive, and statistically significant relationship between soil salinity and plant biomass, indicating that pickleweed plants at this restoration site tend to grow larger as soil salinity increases (Pearson’s r = 0.53, t(21) = 2.90, p = 0.009, α = 0.05).</p>
 </section>
 <section id="e.-test-implications" class="level1">
@@ -286,7 +286,7 @@ sample estimates:
 0.5928854 </code></pre>
 </div>
 </div>
-<p>Both the Pearson’s correlation and the Spearman’s rank correlation would lead to rejecting the null hypothesis because both produce statistically significant p-values (Pearson: p = 0.0086; Spearman: p = 0.0034). The Pearson test summarizes the strength and direction of the linear relationship between soil salinity and pickleweed biomass (r ≈ 0.53), while the Spearman test assesses the strength and direction of the monotonic relationship (ρ ≈ 0.59), which is based on the ranked values rather than the raw measurements. Although the two tests approach the relationship differently, they both indicate that higher soil salinity is associated with greater pickleweed biomass at this site.</p>
+<p>Both the Pearson’s correlation and the Spearman’s rank correlation would lead to rejecting the null hypothesis because both produce statistically significant p-values (Pearson: p = 0.0086; Spearman: p = 0.0034). The Pearson test summarizes the strength and direction of the linear relationship between soil salinity and pickleweed biomass (r = 0.53), while the Spearman test assesses the strength and direction of the monotonic relationship (ρ = 0.59), which is based on the ranked values rather than the raw measurements. Although the two tests approach the relationship differently, they both indicate that higher soil salinity is associated with greater pickleweed biomass at this site.</p>
 </section>
 <section id="problem-2.-personal-data" class="level1">
 <h1>Problem 2. Personal data</h1>
